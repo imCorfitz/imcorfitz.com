@@ -6,43 +6,6 @@
 		Embarked on an endless voyage through the vast and ever-evolving universe of technology. Driven
 		by a relentless thirst for knowledge and a burning desire for 🍰
 	</p>
-	<p>
-		Embarked on an endless voyage through the vast and ever-evolving universe of technology. Driven
-		by a relentless thirst for knowledge and a burning desire for 🍰
-	</p>
-	<p>
-		Embarked on an endless voyage through the vast and ever-evolving universe of technology. Driven
-		by a relentless thirst for knowledge and a burning desire for 🍰
-	</p>
-	<p>
-		Embarked on an endless voyage through the vast and ever-evolving universe of technology. Driven
-		by a relentless thirst for knowledge and a burning desire for 🍰
-	</p>
-	<p>
-		Embarked on an endless voyage through the vast and ever-evolving universe of technology. Driven
-		by a relentless thirst for knowledge and a burning desire for 🍰
-	</p>
-	<p>
-		Embarked on an endless voyage through the vast and ever-evolving universe of technology. Driven
-		by a relentless thirst for knowledge and a burning desire for 🍰
-	</p>
-	<p>
-		Embarked on an endless voyage through the vast and ever-evolving universe of technology. Driven
-		by a relentless thirst for knowledge and a burning desire for 🍰
-	</p>
-	<p>
-		Embarked on an endless voyage through the vast and ever-evolving universe of technology. Driven
-		by a relentless thirst for knowledge and a burning desire for 🍰
-	</p>
-
-	<p>
-		Embarked on an endless voyage through the vast and ever-evolving universe of technology. Driven
-		by a relentless thirst for knowledge and a burning desire for 🍰
-	</p>
-	<p>
-		Embarked on an endless voyage through the vast and ever-evolving universe of technology. Driven
-		by a relentless thirst for knowledge and a burning desire for 🍰
-	</p>
 </main>
 
 <style lang="postcss">

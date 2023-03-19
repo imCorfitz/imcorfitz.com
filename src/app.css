@@ -3,9 +3,14 @@
 @tailwind utilities;
 
 @layer base {
+	::selection {
+		@apply bg-cgreen text-white;
+	}
+
 	html {
 		scroll-behavior: smooth;
 	}
+
 	body {
 		@apply font-graphie;
 	}

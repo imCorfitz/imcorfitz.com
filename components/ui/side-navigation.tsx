@@ -113,11 +113,7 @@ export default function SideNavigation() {
                   href="https://github.com/imCorfitz"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`w-full h-6 flex items-center justify-center relative  ${
-                    pathname === "/about"
-                      ? "text-emerald-500 "
-                      : "text-slate-400 hover:text-slate-500 dark:text-slate-500 dark:hover:text-slate-400"
-                  }`}
+                  className={`w-full h-6 flex items-center justify-center relative text-slate-400 hover:text-slate-500 dark:text-slate-500 dark:hover:text-slate-400`}
                 >
                   <span className="sr-only">GitHub</span>
                   <svg
@@ -141,11 +137,7 @@ export default function SideNavigation() {
                   href="https://twitter.com/imCorfitz"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`w-full h-6 flex items-center justify-center relative  ${
-                    pathname === "/about"
-                      ? "text-emerald-500 "
-                      : "text-slate-400 hover:text-slate-500 dark:text-slate-500 dark:hover:text-slate-400"
-                  }`}
+                  className={`w-full h-6 flex items-center justify-center relative text-slate-400 hover:text-slate-500 dark:text-slate-500 dark:hover:text-slate-400`}
                 >
                   <span className="sr-only">Twitter</span>
                   <svg
@@ -166,11 +158,7 @@ export default function SideNavigation() {
                   href="https://corfitz.medium.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`w-full h-6 flex items-center justify-center relative  ${
-                    pathname === "/about"
-                      ? "text-emerald-500 "
-                      : "text-slate-400 hover:text-slate-500 dark:text-slate-500 dark:hover:text-slate-400"
-                  }`}
+                  className={`w-full h-6 flex items-center justify-center relative text-slate-400 hover:text-slate-500 dark:text-slate-500 dark:hover:text-slate-400`}
                 >
                   <span className="sr-only">Medium</span>
                   <svg

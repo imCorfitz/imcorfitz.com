@@ -107,6 +107,85 @@ export default function SideNavigation() {
                   )}
                 </Link>
               </li>
+
+              <li className="py-2">
+                <a
+                  href="https://github.com/imCorfitz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-full h-6 flex items-center justify-center relative  ${
+                    pathname === "/about"
+                      ? "text-emerald-500 "
+                      : "text-slate-400 hover:text-slate-500 dark:text-slate-500 dark:hover:text-slate-400"
+                  }`}
+                >
+                  <span className="sr-only">GitHub</span>
+                  <svg
+                    className="fill-current w-5 h-5"
+                    height="24"
+                    width="24"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g>
+                      <path
+                        d="M12,0.3c-6.6,0-12,5.4-12,12c0,5.3,3.4,9.8,8.2,11.4 C8.8,23.8,9,23.4,9,23.1c0-0.3,0-1,0-2c-3.3,0.7-4-1.6-4-1.6c-0.5-1.4-1.3-1.8-1.3-1.8C2.5,17,3.7,17,3.7,17 c1.2,0.1,1.8,1.2,1.8,1.2c1.1,1.8,2.8,1.3,3.5,1c0.1-0.8,0.4-1.3,0.8-1.6c-2.7-0.3-5.5-1.3-5.5-5.9c0-1.3,0.5-2.4,1.2-3.2 C5.5,8.1,5,6.9,5.7,5.3c0,0,1-0.3,3.3,1.2c1-0.3,2-0.4,3-0.4c1,0,2,0.1,3,0.4c2.3-1.6,3.3-1.2,3.3-1.2c0.7,1.7,0.2,2.9,0.1,3.2 c0.8,0.8,1.2,1.9,1.2,3.2c0,4.6-2.8,5.6-5.5,5.9c0.4,0.4,0.8,1.1,0.8,2.2c0,1.6,0,2.9,0,3.3c0,0.3,0.2,0.7,0.8,0.6 c4.8-1.6,8.2-6.1,8.2-11.4C24,5.7,18.6,0.3,12,0.3z"
+                        fillRule="evenodd"
+                      />
+                    </g>
+                  </svg>
+                </a>
+              </li>
+              <li className="py-2">
+                <a
+                  href="https://twitter.com/imCorfitz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-full h-6 flex items-center justify-center relative  ${
+                    pathname === "/about"
+                      ? "text-emerald-500 "
+                      : "text-slate-400 hover:text-slate-500 dark:text-slate-500 dark:hover:text-slate-400"
+                  }`}
+                >
+                  <span className="sr-only">Twitter</span>
+                  <svg
+                    className="fill-current w-5 h-5"
+                    height="24"
+                    width="24"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g>
+                      <path d="M24,4.6c-0.9,0.4-1.8,0.7-2.8,0.8c1-0.6,1.8-1.6,2.2-2.7c-1,0.6-2,1-3.1,1.2c-0.9-1-2.2-1.6-3.6-1.6 c-2.7,0-4.9,2.2-4.9,4.9c0,0.4,0,0.8,0.1,1.1C7.7,8.1,4.1,6.1,1.7,3.1C1.2,3.9,1,4.7,1,5.6c0,1.7,0.9,3.2,2.2,4.1 C2.4,9.7,1.6,9.5,1,9.1c0,0,0,0,0,0.1c0,2.4,1.7,4.4,3.9,4.8c-0.4,0.1-0.8,0.2-1.3,0.2c-0.3,0-0.6,0-0.9-0.1c0.6,2,2.4,3.4,4.6,3.4 c-1.7,1.3-3.8,2.1-6.1,2.1c-0.4,0-0.8,0-1.2-0.1c2.2,1.4,4.8,2.2,7.5,2.2c9.1,0,14-7.5,14-14c0-0.2,0-0.4,0-0.6 C22.5,6.4,23.3,5.5,24,4.6z" />
+                    </g>
+                  </svg>
+                </a>
+              </li>
+              {/* <li className="py-2">
+                <a
+                  href="https://corfitz.medium.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-full h-6 flex items-center justify-center relative  ${
+                    pathname === "/about"
+                      ? "text-emerald-500 "
+                      : "text-slate-400 hover:text-slate-500 dark:text-slate-500 dark:hover:text-slate-400"
+                  }`}
+                >
+                  <span className="sr-only">Medium</span>
+                  <svg
+                    className="fill-current w-5 h-5"
+                    height="24"
+                    width="24"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g>
+                      <path d="M23,0H1A1,1,0,0,0,0,1V23a1,1,0,0,0,1,1H23a1,1,0,0,0,1-1V1A1,1,0,0,0,23,0ZM19.938,5.686,18.651,6.92a.376.376,0,0,0-.143.361v9.068a.376.376,0,0,0,.143.361l1.257,1.234v.271H13.586v-.271l1.3-1.264c.128-.128.128-.166.128-.361V8.99l-3.621,9.2h-.489L6.691,8.99v6.163a.85.85,0,0,0,.233.707l1.694,2.054v.271h-4.8v-.271L5.509,15.86a.82.82,0,0,0,.218-.707V8.027a.625.625,0,0,0-.2-.527L4.019,5.686V5.415H8.693l3.613,7.924,3.176-7.924h4.456Z" />
+                    </g>
+                  </svg>
+                </a>
+              </li> */}
               {/* <li className="py-2">
                 <Link
                   href="/projects"

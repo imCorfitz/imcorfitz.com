@@ -3,13 +3,13 @@ import { useMDXComponent } from "next-contentlayer/hooks";
 function MyImg(props: any) {
   if (props.title !== undefined) {
     return (
-      <figure>
+      <figure className="flex flex-col items-center">
         <img src={props.src} alt={props.alt} />
-        <figcaption>{props.title}</figcaption>
+        <figcaption dangerouslySetInnerHTML={{ __html: props.title }} />
       </figure>
     );
   } else {
-    return <img src={props.src} alt={props.alt} />;
+    return <img className="mx-auto" src={props.src} alt={props.alt} />;
   }
 }
 

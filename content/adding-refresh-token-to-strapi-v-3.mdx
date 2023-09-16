@@ -7,7 +7,7 @@ summary: "One thing that Strapi yet has to do better is a more long-lived authen
 
 Strapi is an awesome tool. I’m a full stack developer and have built several APIs myself from ground up, but Strapi is my absolute go-to tool for creating simple APIs and at the same time it allows for easy management through their CMS’like interface, when my clients want to make some content updates or provide support.
 
-![Hero](/images/posts/adding-refresh-token-to-strapi-v-3/hero.jpg)
+![Hero](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*9hDxwI_262jX9RFMq9-Mtg.jpeg)
 
 One thing that Strapi yet has to do better is a more long-lived authentication experience when you want to allow users and visitor to log in to your front-end and do management that way through. I have found several videos on how to refresh an existing jwt token, but still there are a few security issues with that, as once the jwt has been issued, and the token can be used to renew itself, there is no way for a user to prevent a token-thief from forever getting access to their account. Actually — at that point not even changing your password will make a difference.
 
@@ -21,7 +21,7 @@ It is a rather long article, but if you sort of know what you are doing, and jus
 
 If you haven’t yet set up your Strapi environment, we would need to do that first. If you already have Strapi running on your machine, you can skip this step.
 
-![Terminal](/images/posts/adding-refresh-token-to-strapi-v-3/terminal-1.png)
+![Terminal](https://miro.medium.com/v2/resize:fit:4800/format:webp/1*Kp47cRsGgc8hafH1MfSvPg.png)
 
 ```zsh
 yarn create strapi-app my-project --quickstart
@@ -31,7 +31,7 @@ Now — I just run the quickstart for the purpose of demonstration, but feel fre
 
 After the installation, we open up Strapi in the browser on `http://localhost:1337/admin` and begin creating our first admin user.
 
-![Strapi Admin](/images/posts/adding-refresh-token-to-strapi-v-3/strapi-1.png)
+![Strapi Admin](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*3fYeW0p78KKhPU8NHT0CGg.png)
 
 Now we are ready to start implementing our custom refresh token function. Firstly we want to add a custom field to the User collection type. You will see later on why we will need this.
 
@@ -39,17 +39,17 @@ Go to Content-Types Builder and select User under Collection Types. User is a pr
 
 Select “Number” as field type, and call it `tokenVersion`. Select integer as Number format.
 
-![Strapi Admin](/images/posts/adding-refresh-token-to-strapi-v-3/strapi-2.png)
+![Strapi Admin](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*ZAiNHGsYpSJJ03MwuknFeg.png)
 
 Click on the “Advanced Settings” tab and set the default value to 1 and check the checkbox for Private field, as we do not need this to be exposed to the API.
 
-![Strapi Admin](/images/posts/adding-refresh-token-to-strapi-v-3/strapi-3.png)
+![Strapi Admin](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*9Tf1X88n_qTCb5oSLYkG1w.png)
 
 Next let’s add a user in our app. Click ‘Users’ in the left menu under Collection Types and click on “Add new Users”. Fill out all the fields, mark it as confirmed and select ‘Authenticated’ as Role. This is default for users that can engage with your app.
 
 You will notice that our TokenVersion is shown as well — but you can leave this as 1 for now. Click Save and let’s continue with next step in our API client.
 
-![Strapi Admin](/images/posts/adding-refresh-token-to-strapi-v-3/strapi-4.png)
+![Strapi Admin](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*fwhaxaXdOpy81pgm2PK-IA.png)
 
 There are several great tools out there to help you test and work with your APIs. [Postman](https://www.postman.com/) is a great tool and free to use for most use cases. If you are using VS Code as your IDE, you can also find great extensions to help you explore APIs and save to your workspace for later use. [Thunder Client](https://www.thunderclient.io/) is one of those I enjoy using most, though in most cases I use a paid piece of software called [Paw](https://paw.cloud/). I really enjoy the work experience, and when you work with bigger APIs, maybe both REST and GraphQL and across multiple environments for production and tests, it just can’t get much better IMO.
 
@@ -62,13 +62,13 @@ Regardless of your chosen API client, let’s proceed and make an authentication
 }
 ```
 
-![Paw API Client](/images/posts/adding-refresh-token-to-strapi-v-3/paw-1.png)
+![Paw API Client](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*9WwrJ-38kBnmcjNCuXF-cQ.png)
 
 Wunderbar! Everything is working as expected. We have received a JWT (JSON Web Token) and a user object with some further information about the user that has been authenticated.
 
 Now — let’s check out what we have in the token. If you open up a new tab in your browser and go to [jwt.io](http://jwt.io/) you’ll find a space where you can paste in your token. On the right hand side, it will then show you details about the token including the payload, which we want to check in this case.
 
-![JWT.io](/images/posts/adding-refresh-token-to-strapi-v-3/jwt-1.png)
+![JWT.io](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*FXSJJBg1-092j3PcifpBPw.png)
 
 The payload consists of three properties: `id` which includes the user ID of the authenticated user, `iat` which includes the timestamp for when this token was “issued at”, and `exp` which tells us the expiration date for this token. As you can see, we have about 1 month lifetime in one token, which in most cases are sufficient, but in theory, the token could run out at this very day and cause an unfortunate user experience, should they be submitting a 4-page long multistep form and suddenly no longer be allowed access to the API.
 
@@ -114,7 +114,7 @@ Next step then is to fire up our favourite IDE (in my case VS Code) and then we 
 }
 ```
 
-![VS Code](/images/posts/adding-refresh-token-to-strapi-v-3/code-1.png)
+![VS Code](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*kzZ1A2U5WdlR1hpjWxw8-w.png)
 
 Before you save this file, we want to create a new directory under `extensions > users-permissions` called “controllers” and in here we will create a new file called `Auth.js` and add following code:
 
@@ -141,21 +141,21 @@ module.exports = {
 };
 ```
 
-![VS Code](/images/posts/adding-refresh-token-to-strapi-v-3/code-2.png)
+![VS Code](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*bZVy_-9SbfFqrLba0xH2tw.png)
 
 Save both files and check your terminal to verify everything is still working correctly. You may have to restart your Strapi server. The quick eye will catch my little mistake here in creating a routes object referring to a handler in the Auth controller prior to have created these handlers. This would cause Strapi to complain when files are saved as Strapi will automatically restart itself and validate the codebase anew. But once you’ve saved both files, you should be good to run `yarn develop` once again, and get your server running.
 
 Next up, we want to enter Strapi and expose these two new endpoints for public use. We do that by going in to settings and selecting ‘Roles’ under the ‘Users & permissions plugin’ section and then clicking on ‘Public’.
 
-![Strapi Admin](/images/posts/adding-refresh-token-to-strapi-v-3/strapi-5.png)
+![Strapi Admin](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*UKPFQtKMekkBPIgYMppFRw.png)
 
 Down at the bottom of the list, you will expand the “users-permissions” accordion and notice our two new endpoints listed under ‘Auth’. Enable both of these and click ‘Save’.
 
-![Strapi Admin](/images/posts/adding-refresh-token-to-strapi-v-3/strapi-6.png)
+![Strapi Admin](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*kBBY4FjzZ--4hb6zrmr-fA.png)
 
 Next — let’s go back to our API client and test our new endpoints. We set up a POST request, add `http://localhost:1337/auth/refreshToken` as the endpoint. Run it and you should expect a status 200 response with a JSON body containing a property saying: `refreshed: true`.
 
-![Paw API Client](/images/posts/adding-refresh-token-to-strapi-v-3/paw-2.png)
+![Paw API Client](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*leuZJ-9-LFyxkcatHjRrZQ.png)
 
 Great job so far! Until now nothing fancy has happened, but everything is working well and we have built the foundation for our custom implementation now. So let’s get started on that.
 
@@ -187,15 +187,15 @@ We use the same JWT service that is used by Strapi to issue normal JWT tokens, b
 
 Next up, we want to find all the places in `Auth.js` where a JWT token is being issued and extend the object with a `refresh` property containing the token returned by our new function: `refresh: generateRefreshToken(user)`. _(Last time I did this, I found 5 places to add this on lines: 163, 199, 245, 565, 604.)_
 
-![VS Code](/images/posts/adding-refresh-token-to-strapi-v-3/code-3.png)
+![VS Code](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*fn__DprMTaiqX9X2grrUag.png)
 
 If we go back to our API client once again and run the authentication call, we should now see, that we also get a refresh token back. Wunderbar!
 
-![Paw API Client](/images/posts/adding-refresh-token-to-strapi-v-3/paw-3.png)
+![Paw API Client](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*R15El3ckocwpdfncnthu_A.png)
 
 And to be sure that the refresh token is being created correctly, let’s just verify the contents of its payload at jwt.io again. Now we see that the expiration date is 60 days away and it also includes `tkv` and `sub` which are our token version and user id. So that is great!
 
-![JWT.io](/images/posts/adding-refresh-token-to-strapi-v-3/jwt-2.png)
+![JWT.io](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*IpPBRTwXWKSZbH8o-uyFwQ.png)
 
 Next up we are going to actually build our refreshToken handler. In short, it will unpack the refresh token and start by verifying it isn’t expired. Hereafter we fetch the user based on the subject property and verify that the token version in the refresh token matches the token version for the user.
 
@@ -234,11 +234,11 @@ async refreshToken(ctx) {
 },
 ```
 
-![VS Code](/images/posts/adding-refresh-token-to-strapi-v-3/code-4.png)
+![VS Code](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*nyFbVS8rJqZQDgC0LBKy8Q.png)
 
 Let’s see if everything works when we call our refresh token endpoint from our API client now. This time we have to make sure we add the ‘token’ property and the optional ‘renew’ property in the JSON body when calling the endpoint. If everything is going according to plan, you should have received a new jwt and possibly refresh token in the callback. 💪
 
-![Paw API Client](/images/posts/adding-refresh-token-to-strapi-v-3/paw-4.png)
+![Paw API Client](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*-_a9J5wKFhsvpPA-ZPvGCw.png)
 
 ## Revoke the token
 
@@ -275,15 +275,15 @@ async revoke(ctx) {
 
 Let’s test this out by copying the refresh token we used in the test we made towards our refresh token endpoint, and pass it as the `token` property in a JSON body that we send to a POST request to `http://localhost:1337/auth/revoke`.
 
-![Paw API Client](/images/posts/adding-refresh-token-to-strapi-v-3/paw-5.png)
+![Paw API Client](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*Fqzh88EE65XguPJmXlLybw.png)
 
 Awesome! We got a confirmation back. Because we are curious creatures, let’s have a look in the Strapi admin and see if the token version for the user has in fact been updated.
 
-![Strapi Admin](/images/posts/adding-refresh-token-to-strapi-v-3/strapi-7.png)
+![Strapi Admin](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*m99oH30dVYaqoHdVkVHLGg.png)
 
 Way to go! The token version now says 2, and now our refresh token should in theory no longer be valid. Let’s open up our API client and trigger the refresh token endpoint call again with the same data as earlier. And would you look at that — Bad request, status 400 with error message: “Refresh token is invalid”. Usually not a status and API reply you are happy to see as a developer, but in this case, it couldn’t be much better.
 
-![Paw API Client](/images/posts/adding-refresh-token-to-strapi-v-3/paw-6.png)
+![Paw API Client](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*zItaLQI4dlnV32qeqOIwMg.png)
 
 At this point, we are good to go and can continue the development of our APIs, data structure and new app that we want to build. I wish you all the best and good luck with the work ahead! Cheers!
 
@@ -295,7 +295,7 @@ I am glad you asked. As we already have all the logic in place, it is simply a m
 
 Firstly — if you haven’t already, we need to install the GraphQL extension for Strapi. Go to your Strapi admin, under Marketplace and click the download button for GraphQL. This will run the installation and restart the server. It may take a few seconds to run.
 
-![Strapi Admin](/images/posts/adding-refresh-token-to-strapi-v-3/strapi-8.png)
+![Strapi Admin](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*nVgMylVZu-EsDGCsUYgAaA.png)
 
 Next up, we are going back to our IDE and let’s create a new file under `extensions > users-permissions > config` called `schema.graphql.js`.
 
@@ -388,7 +388,7 @@ function checkBadRequest(contextBody) {
 
 This is just a little error handler, that throws an error with the details from the Auth handler, should the result be a bad request.
 
-![VS Code](/images/posts/adding-refresh-token-to-strapi-v-3/code-5.png)
+![VS Code](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*OhtJSrwiBt3enzVlvkuhxQ.png)
 
 Finally, let’s do the same for our `revokeToken` mutation resolver object:
 
@@ -410,17 +410,17 @@ Let’s test it out! Firstly, we may have to authenticate anew and get a new ref
 
 Then we’ll create a mutation query for refreshToken in our GraphQL client, which takes in the refresh token as ‘token’ parameter, and let’s just pass ‘renew’ as true as well.
 
-![Paw API Client](/images/posts/adding-refresh-token-to-strapi-v-3/paw-7.png)
+![Paw API Client](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*GlhHisrctbJkJ-1dRXjFBA.png)
 
 Yis! Starting to seem like a productive day! We got our new jwt token and refresh token back. Now — LET’S REVOKE ‘EM! Muahahaha!!!!
 
 Create another mutation call to the revokeToken mutation with the refresh token, and let’s see what happens. If you are as fortunate as I, you should see a nice data callback with a property of `confirmed: true`. We are happy.
 
-![Paw API Client](/images/posts/adding-refresh-token-to-strapi-v-3/paw-8.png)
+![Paw API Client](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*bysTc-1QJBhPE_TtugJ7rQ.png)
 
 To round it all off, let’s run our `refreshToken` again to see it the token has in fact been invalidated… And I believe we are done!
 
-![Paw API Client](/images/posts/adding-refresh-token-to-strapi-v-3/paw-9.png)
+![Paw API Client](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*AFJn_mEJtwYFX6W1lJ0B2A.png)
 
 ## Final thoughts
 

@@ -7,7 +7,7 @@ summary: "Managing custom metafields has until now not been easy in Shopify. Let
 
 As a Shopify store owner, you quickly realise how heavy you rely on third party plugin providers and app developers in order to create a little bit of bespoke functionality to your online store.
 
-![Post](/images/posts/editing-shopify-metafields-without-an-app-or-a-plugin/metafields.jpg)
+![Post](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*L7l-kveCeAfGxdLVzBq3sA.jpeg)
 
 Working with your products inside Shopify admin, you have access to all the standard data fields for inventory, variants, title, description, pricing etc. but the moment you wish to add, say specs for a device, or characteristics of a product, you are limited to writing these additional data in the product description field, or turn to a Shopify App for a solution.
 
@@ -23,11 +23,11 @@ In reality, Shopify does in fact allow you to manage Metafields on a global scop
 
 If you access you Shopify admin area on the URL: *https://my-shopify-store.myshopify.com/admin/bulk?resource_name=Product&edit=metafields.global.custom_field_name*, you will find a neat overview of all your products, along with input fields allowing you to populate custom meta data for your products.
 
-![Shopify Metafields Admin interface](/images/posts/editing-shopify-metafields-without-an-app-or-a-plugin/shopify-metafields-admin.jpg "The Bulk editor with custom metafields in Shopify Admin")
+![Shopify Metafields Admin interface](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*b_Vz6Ic7x3virN2F958ZkA.jpeg "The Bulk editor with custom metafields in Shopify Admin")
 
 Hereafter you will simply write out the metafield in your liquid code like this: `<p><b>Colour:</b> {{ product.metafields.global.colour }}</p>` and you are now displaying additional custom data. Now isn’t that cool?
 
-![Example of metafield in Shopify](/images/posts/editing-shopify-metafields-without-an-app-or-a-plugin/metafields-result-example.jpg "Example of what metafields can be used for on a product page.")
+![Example of metafield in Shopify](https://miro.medium.com/v2/resize:fit:1248/format:webp/1*WBskUeTPYK9AEmLHNyE3NQ.png "Example of what metafields can be used for on a product page.")
 
 Now all you have to do, is remember this URL every time you want to add or update these metafields, and you should be good to go.
 
@@ -35,7 +35,7 @@ Now all you have to do, is remember this URL every time you want to add or updat
 
 I am glad you asked. I couldn’t find any direct access from within the Shopify Admin itself, so what I did instead was to [create a little tool](https://shopify-metafields-editor-link.vercel.app/), that helps you generate the url with all the metafields you need, and make it easy for you to save and reuse later.
 
-![Shopify Metafields Editor Link Generator](/images/posts/editing-shopify-metafields-without-an-app-or-a-plugin/shopify-metafields-editor-link-generator.jpg "Shopify Metafields Editor Link Generator (Now — that’s a mouth full)")
+![Shopify Metafields Editor Link Generator](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*r4UIQzls4WoQ3eB_I-exRg.png "Shopify Metafields Editor Link Generator (Now — that’s a mouth full)")
 
 This simple tool allows you to add your Shopify store url and list the metafields you wish to add to your products, and it will then automatically generate the correct URL:
 

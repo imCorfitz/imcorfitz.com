@@ -7,7 +7,7 @@ summary: "If you like me start new projects all the time, having a simple-to-use
 
 It is no secret that Next.js is kinda my go-to framework for pretty much anything. Whether being client work, own projects, play grounds etc. But whenever I engage in bigger projects, I usually went through a long process of preparing my repo, getting latest packages and establishing a foundation from which the project could grow. _Ohh what a tiresome and long process…_
 
-![Hero](/images/posts/create-a-custom-create-next-project-command/hero.jpg)
+![Hero](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*jS3KTHCzGGvYizOlDktYAA.jpeg 'Photo by mrsiraphol — <a href="http://www.freepik.com/">Freepik</a> — Edited by Corfitz.')
 
 Usually this involved configuration of TypeScript, ES Lint, CI/CD files for Gitlab, setting up `src` directory structure along with aliases in TS Config, adding `.npmrc` file with `save-exact=true` to ensure packages being installed and added to package.json don’t differ from one another when deploying the app 6 months later. (I have spent many them evenings wondering why everything worked well locally but for some reason got messed up once deployed to staging environment — or worse; production 😰).
 
@@ -15,13 +15,13 @@ March last year, a lad by the name of João Pedro Schmitz ([@jpedroschmitz](http
 
 It has become one of my favourite projects on GitHub, and I find myself coming by regularly to fetch the installation script: `npx create-next-app ts-next -e https://github.com/jpedroschmitz/typescript-nextjs-starter`.
 
-![Why?](/images/posts/create-a-custom-create-next-project-command/why.gif)
+![Why?](https://miro.medium.com/v2/resize:fit:720/1*q_8bkYt5_I_kD1ikqf8iDw.gif)
 
 As one probably will notice, it is one heck of a one-liner to remember when going to start a project. So, lazy as I am, I went to create a little zsh function to spare me the trouble of having to either remember it or looking it up every time.
 
 Now all I have to do is simply write `create-next-project <project-name>` and BOOM! I have everything I need to crack on.
 
-![Terminal](/images/posts/create-a-custom-create-next-project-command/terminal.png)
+![Terminal](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*fhNBPNxx94MNgFq1XZPZpg.png)
 
 ## Enough talking — now show me!
 
@@ -58,7 +58,7 @@ You now have 3 options for how to execute the command:
 2. Run `create-next-project .` inside your desired project folder. The period will tell the command to execute the creation of a new Next.js project inside the folder where you currently are.
 3. `create-next-project` without anything, from which the command will assume you are rather lazy and thus naming the project folder “too-lazy-to-come-up-with-a-project-name”.
 
-![Screenshot](/images/posts/create-a-custom-create-next-project-command/screen.jpg)
+![Screenshot](https://miro.medium.com/v2/resize:fit:4800/format:webp/1*WhdzaWYGu5wWlqhtjHx0Hg.png)
 
 Should you wish to change the default folder name, you simply change this line in the `.functions` file:
 

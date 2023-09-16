@@ -9,7 +9,7 @@ Shopify has proved to be one of the most intuitive and user friendly platforms i
 
 And with the new Shopify 2.0 theme engine and loads of new features, _a LOT_ of desires can now be fulfilled much easier than ever before. Colour swatches on your collection pages is not a new thing, but it has often required that you found a theme that supported the feature or installed an app that could achieve same.
 
-![Shopify Products grid](/images/posts/adding-colour-swatches-to-shopify-collection-page/products-1.jpg "Example taken from an upcoming ecommerce site: www.pandaghost.com")
+![Shopify Products grid](https://miro.medium.com/v2/resize:fit:4800/format:webp/1*HWr_aQV2K_kcTUuTJ1kCqQ.png "Example taken from an upcoming ecommerce site: www.pandaghost.com")
 
 Today we will endeavour to build our own simple colour swatches section that will be displayed on a product card in a collection. Let’s start by clarifying the goal and challenges:
 
@@ -43,7 +43,7 @@ The best way to create a list of colour swatches, where we have complete control
 
 In Shopify, you can find metafields under Settings in your admin panel. The URL would be something like: https://your-store-name.myshopify.com/admin/metafields. We want to assign this metafield to a product, so we click on **Products** and then next on **Add a definition**.
 
-![Metafields](/images/posts/adding-colour-swatches-to-shopify-collection-page/metafields-1.jpg)
+![Metafields](https://miro.medium.com/v2/resize:fit:4800/format:webp/1*WV8wdrWmKbEgpzlj5tSRCA.png)
 
 Creating a new metafield is straight forward. The only thing we want to ensure we do correctly while creating the metafield is to set the namespace and key to `product_info.color`, select **Color** as content type and making sure we check “Accept list of values”.
 
@@ -51,17 +51,17 @@ Creating a new metafield is straight forward. The only thing we want to ensure w
 
 Feel free to give the metafield a name of your liking and description as well.
 
-![Metafields](/images/posts/adding-colour-swatches-to-shopify-collection-page/metafields-2.jpg)
+![Metafields](https://miro.medium.com/v2/resize:fit:4800/format:webp/1*C-o3L64NiPOjHr99rdNnHw.png)
 
 Now — if we go to a product in Shopify admin, we can find our metafield in the very bottom.
 
-![Metafields](/images/posts/adding-colour-swatches-to-shopify-collection-page/metafields-3.jpg)
+![Metafields](https://miro.medium.com/v2/resize:fit:4800/format:webp/1*w-jmaYpDJqXb0lLR3QSY6A.png)
 
 Let’s proceed by adding the colours that we wish to display for our product on the collection pages.
 
-![Metafields](/images/posts/adding-colour-swatches-to-shopify-collection-page/metafields-4.jpg)
+![Metafields](https://miro.medium.com/v2/resize:fit:4800/format:webp/1*CQOjrGoZ4LEfUFdVBm7mDw.png)
 
-![Metafields](/images/posts/adding-colour-swatches-to-shopify-collection-page/metafields-5.jpg)
+![Metafields](https://miro.medium.com/v2/resize:fit:4800/format:webp/1*PqgDnsirZKrKokGx-F07RA.png)
 
 I am not kidding when I say that this was the hard part. At this point, you will just have to copy a few snippets I will include for you here, and you should be good to go. I will make sure to explain how it all works as well so you are aware of what you are adding and how it works.
 
@@ -84,7 +84,7 @@ Let’s open the theme code editor in Shopify admin and locate the file for our 
 
 Basically what is happening here is that we start by checking if any colours actually have been added to the metafield. And if so, we create a wrapper we call “color-options”. In here we loop through the values of this list of colours, and display a “color-options\_\_item” with a background-color set to each color.
 
-![Shopify Code Editor](/images/posts/adding-colour-swatches-to-shopify-collection-page/shopify-1.png)
+![Shopify Code Editor](https://miro.medium.com/v2/resize:fit:4800/format:webp/1*ip8qelFRvPI0Uq0Qz91aIg.png)
 
 And then we want to update the css stylesheet for the product card to make our colour swatch look nice. In the Dawn theme, this is under the Assets directory and called `component-card.css`.
 
@@ -124,11 +124,11 @@ The swatch items have a fixed size of 14px x 14px. We disable flex-shrink so the
 
 Finally we make sure to increase the size and spacing a little on bigger screens using a media query set to screens wider than 990px.
 
-![Shopify Code Editor](/images/posts/adding-colour-swatches-to-shopify-collection-page/shopify-2.png)
+![Shopify Code Editor](https://miro.medium.com/v2/resize:fit:4800/format:webp/1*JCtBPrKV7OiFNtSW5_NaHg.png)
 
 And that’s it! Now you should see a beautiful line of coloured dots that perfectly represents the colours of your product variants.
 
-![Shopify Products grid](/images/posts/adding-colour-swatches-to-shopify-collection-page/products-2.jpg)
+![Shopify Products grid](https://miro.medium.com/v2/resize:fit:4800/format:webp/1*0-Jxy-KBE9RGoP2DsS1KEA.png)
 
 ---
 
@@ -137,7 +137,7 @@ At this point, we have achieved our goal of showing the various colours our prod
 
 We can pretty much use the same concept of metafields and tweak our liquid snippet a little. What we would do then is to create a metafield definition with a namespace and key called `product_info.material` for example. And then instead of **Color** as a content type, we will choose **Text**, single line, and make sure to accept list values again.
 
-![Metafields](/images/posts/adding-colour-swatches-to-shopify-collection-page/metafields-6.jpg)
+![Metafields](https://miro.medium.com/v2/resize:fit:4800/format:webp/1*uUiaopFz_2aNUdWzX4NqbA.png)
 
 What we will do then, is add a text field with an image reference for each material and texture available. In Shopify admin, we can go to settings, and right underneath **Metafields**, we have a button called **Files**. Here we can upload small images (approx. 30px x 30px) in any format we desire: JPEG, PNG, or GIF. We then copy the link and add that to the list of materials for our product in the metafields section.
 

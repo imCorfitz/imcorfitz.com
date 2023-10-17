@@ -1,4 +1,5 @@
 import "./css/style.css";
+import "react-medium-image-zoom/dist/styles.css";
 
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";

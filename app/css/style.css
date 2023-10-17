@@ -5,6 +5,7 @@
 @import "additional-styles/utility-patterns.css";
 @import "additional-styles/range-slider.css";
 @import "additional-styles/toggle-switch.css";
+@import "additional-styles/image-zoom.css";
 @import "additional-styles/theme.css";
 
 @import "tailwindcss/utilities";

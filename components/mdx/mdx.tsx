@@ -1,15 +1,22 @@
 import { useMDXComponent } from "next-contentlayer/hooks";
+import ImageZoom from "../image-zoom";
 
 function MyImg(props: any) {
   if (props.title !== undefined) {
     return (
       <figure className="flex flex-col items-center">
-        <img src={props.src} alt={props.alt} />
+        <ImageZoom>
+          <img src={props.src} alt={props.alt} />
+        </ImageZoom>
         <figcaption dangerouslySetInnerHTML={{ __html: props.title }} />
       </figure>
     );
   } else {
-    return <img className="mx-auto" src={props.src} alt={props.alt} />;
+    return (
+      <ImageZoom>
+        <img className="mx-auto" src={props.src} alt={props.alt} />
+      </ImageZoom>
+    );
   }
 }
 

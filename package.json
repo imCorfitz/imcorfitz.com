@@ -18,9 +18,11 @@
     "nprogress": "^0.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-medium-image-zoom": "^5.1.8",
     "rehype-pretty-code": "^0.9.5",
     "rehype-slug": "^5.1.0",
-    "remark-gfm": "^3.0.1"
+    "remark-gfm": "^3.0.1",
+    "remark-unwrap-images": "^4.0.0"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.3",

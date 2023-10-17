@@ -29,6 +29,7 @@ export default function About() {
               src={AboutImg}
               width={692}
               height={390}
+              priority
               alt="About"
             />
             {/* Page content */}

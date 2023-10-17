@@ -42,6 +42,33 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link
+          href="/icons/apple-touch-icon.png"
+          rel="apple-touch-icon"
+          sizes="180x180"
+        />
+        <link
+          href="/icons/favicon-32x32.png"
+          rel="icon"
+          sizes="32x32"
+          type="image/png"
+        />
+        <link
+          href="/icons/favicon-16x16.png"
+          rel="icon"
+          sizes="16x16"
+          type="image/png"
+        />
+        <link href="/icons/site.webmanifest" rel="manifest" />
+        <link
+          color="#353844"
+          href="/icons/safari-pinned-tab.svg"
+          rel="mask-icon"
+        />
+        <meta content="#353844" name="msapplication-TileColor" />
+        <meta content="#ffffff" name="theme-color" />
+      </head>
       {/* suppressHydrationWarning: https://github.com/vercel/next.js/issues/44343 */}
       <body
         className={`${inter.variable} ${aspekta.variable} font-inter antialiased bg-white text-slate-800 dark:bg-slate-900 dark:text-slate-200 tracking-tight`}

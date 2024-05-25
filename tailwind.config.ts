@@ -12,6 +12,14 @@ const config: Config = {
         sans: ["var(--font-geist-sans)"],
         mono: ["var(--font-geist-mono)"],
       },
+      container: {
+        center: true,
+        padding: "1rem",
+      },
+      colors: {
+        primary: "rgba(var(--foreground-rgb))",
+        secondary: "rgba(var(--background-rgb))",
+      },
     },
   },
   plugins: [require("@tailwindcss/typography")],

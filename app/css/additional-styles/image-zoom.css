@@ -1,6 +1,0 @@
-.ic-image-zoom [data-rmiz-modal-overlay="hidden"] {
-  @apply dark:bg-slate-900/0 bg-white/0;
-}
-.ic-image-zoom [data-rmiz-modal-overlay="visible"] {
-  @apply dark:bg-slate-900/50 bg-white/50;
-}

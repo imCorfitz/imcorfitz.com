@@ -6,10 +6,10 @@ import { SocialLink } from "./social-link";
 // ------------------------------------------------------------------
 
 const navItems = [
-  {
-    path: "/",
-    label: "Thoughts",
-  },
+  //   {
+  //     path: "/",
+  //     label: "Thoughts",
+  //   },
   {
     path: "/about",
     label: "About",

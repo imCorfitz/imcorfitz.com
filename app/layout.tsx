@@ -34,7 +34,7 @@ export default function RootLayout({
           sizes="16x16"
           type="image/png"
         />
-        <link href="/icons/site.webmanifest" rel="manifest" />
+        <link href="/site.webmanifest" rel="manifest" />
         <link
           color="#161616"
           href="/icons/safari-pinned-tab.svg"

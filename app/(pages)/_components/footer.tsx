@@ -1,6 +1,6 @@
 export const Footer = () => {
   return (
-    <div className="flex items-center pb-16 pt-20 font-mono md:pt-40">
+    <div className="flex flex-wrap items-center justify-center pb-16 pt-20 font-mono md:pt-40">
       <p className="text-primary/50 text-xs font-light">
         <abbr
           title="This site and all its content are licensed under a Creative Commons Attribution-NonCommercial 4.0 International License."

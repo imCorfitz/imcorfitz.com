@@ -7,6 +7,11 @@
   --background-rgb: 22, 22, 22;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background-color: rgb(var(--background-rgb));

@@ -33,7 +33,7 @@ const socialItems = [
 
 export const Header = () => {
   return (
-    <div className="mb-16 flex items-center">
+    <header className="mb-16 flex items-center">
       <Link
         href="/"
         className="text-xl font-bold transition-opacity hover:opacity-80"
@@ -57,6 +57,6 @@ export const Header = () => {
           ))}
         </div>
       </div>
-    </div>
+    </header>
   );
 };

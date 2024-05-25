@@ -1,11 +1,10 @@
 ---
 title: "Adding refresh token to Strapi v.3"
 publishedAt: "2021-06-15"
-image: "/images/posts/adding-refresh-token-to-strapi-v-3/thumbnail.jpg"
 summary: "One thing that Strapi yet has to do better is a more long-lived authentication experience when you want to allow users and visitor to log in to your front-end."
 ---
 
-Strapi is an awesome tool. I’m a full stack developer and have built several APIs myself from ground up, but Strapi is my absolute go-to tool for creating simple APIs and at the same time it allows for easy management through their CMS’like interface, when my clients want to make some content updates or provide support.
+Strapi is an awesome tool allowing you to create simple APIs and at the same time it allows for easy management through their CMS’like interface, when admins want to make some content updates or provide support.
 
 ![Hero](https://miro.medium.com/v2/resize:fit:2000/format:webp/1*9hDxwI_262jX9RFMq9-Mtg.jpeg)
 
@@ -178,7 +177,7 @@ const generateRefreshToken = (user) => {
     {
       subject: user.id.toString(),
       expiresIn: "60d",
-    }
+    },
   );
 };
 ```

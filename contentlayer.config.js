@@ -17,10 +17,6 @@ const Post = defineDocumentType(() => ({
       type: "string",
       required: true,
     },
-    image: {
-      type: "string",
-      required: true,
-    },
     summary: {
       type: "string",
       required: true,

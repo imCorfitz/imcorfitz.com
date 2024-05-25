@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "additional-styles/image-zoom.css";
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  @apply bg-zinc-900 text-zinc-200;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

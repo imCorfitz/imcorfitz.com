@@ -1,5 +1,5 @@
 import { useMDXComponent } from "next-contentlayer/hooks";
-import ImageZoom from "../image-zoom";
+import ImageZoom from "@/components/image-zoom";
 
 function MyImg(props: any) {
   if (props.title !== undefined) {
@@ -32,7 +32,7 @@ export function Mdx({ code }: MdxProps) {
   const Component = useMDXComponent(code);
 
   return (
-    <div className="prose prose-img:rounded-lg text-slate-500 dark:text-slate-400 max-w-none prose-p:leading-normal prose-blockquote:text-inherit prose-headings:text-slate-800 dark:prose-headings:text-slate-200 prose-a:font-medium prose-a:text-emerald-500 prose-a:no-underline hover:prose-a:underline prose-strong:font-medium prose-strong:text-slate-800 dark:prose-strong:text-slate-100 prose-pre:bg-slate-800 dark:prose-code:text-slate-200">
+    <div className="prose max-w-none text-zinc-200/80 prose-headings:text-zinc-200 prose-p:leading-relaxed prose-a:border-b prose-a:border-dotted prose-a:text-zinc-200 prose-a:no-underline prose-a:transition-colors hover:prose-a:text-zinc-200/80 prose-blockquote:text-inherit prose-strong:font-medium prose-strong:text-zinc-300 prose-code:text-zinc-200 prose-pre:bg-slate-800 prose-img:rounded-lg">
       <Component components={{ ...mdxComponents }} />
     </div>
   );

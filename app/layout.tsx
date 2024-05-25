@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 
-import "./globals.css";
+import "./css/globals.css";
+import "react-medium-image-zoom/dist/styles.css";
 
 export const metadata: Metadata = {
   title: "Corfitz",

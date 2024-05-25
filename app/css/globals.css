@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "additional-styles/image-zoom.css";
+
 :root {
   --foreground-rgb: 232, 232, 232;
   --background-rgb: 22, 22, 22;

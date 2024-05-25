@@ -36,7 +36,7 @@ export const Header = () => {
     <header className="mb-16 flex items-center">
       <Link
         href="/"
-        className="text-xl font-bold transition-opacity hover:opacity-80"
+        className="text-xl font-bold transition-colors hover:text-zinc-200/80"
       >
         Corfitz.
       </Link>

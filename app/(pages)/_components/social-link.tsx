@@ -17,7 +17,7 @@ export const SocialLink = ({ path, label, icon }: SocialLinkProps) => {
       rel="noopener noreferrer"
       target="_blank"
       title={label}
-      className="opacity-50 transition-opacity hover:opacity-80"
+      className="text-zinc-500 transition-colors hover:hover:text-zinc-200/80"
     >
       {icon}
     </a>

@@ -32,7 +32,7 @@ export function Mdx({ code }: MdxProps) {
   const Component = useMDXComponent(code);
 
   return (
-    <div className="text-primary/80 prose-headings:text-primary prose-a:text-primary prose-strong:text-primary/90 prose-code:text-primary prose max-w-none prose-p:leading-relaxed prose-a:border-b prose-a:border-dotted prose-a:no-underline prose-a:transition-opacity hover:prose-a:opacity-80 prose-blockquote:text-inherit prose-strong:font-medium prose-pre:bg-slate-800 prose-img:rounded-lg">
+    <div className="prose max-w-none text-zinc-200/80 prose-headings:text-zinc-200 prose-p:leading-relaxed prose-a:border-b prose-a:border-dotted prose-a:text-zinc-200 prose-a:no-underline prose-a:transition-colors hover:prose-a:text-zinc-200/80 prose-blockquote:text-inherit prose-strong:font-medium prose-strong:text-zinc-300 prose-code:text-zinc-200 prose-pre:bg-slate-800 prose-img:rounded-lg">
       <Component components={{ ...mdxComponents }} />
     </div>
   );

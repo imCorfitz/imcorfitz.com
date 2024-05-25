@@ -18,8 +18,8 @@ export const NavLink = ({ path, label }: NavLinkProps) => {
   return (
     <Link
       href={path}
-      className={`border-b border-dotted font-mono text-sm transition-opacity hover:opacity-80
-      ${pathname === path ? "opacity-100" : "opacity-50"}
+      className={`border-b border-dotted font-mono text-sm transition-colors hover:text-zinc-200/80
+      ${pathname === path ? "text-zinc-200" : "text-zinc-500"}
   `}
     >
       {label}

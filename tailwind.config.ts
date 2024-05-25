@@ -16,10 +16,6 @@ const config: Config = {
         center: true,
         padding: "1rem",
       },
-      colors: {
-        primary: "rgba(var(--foreground-rgb))",
-        secondary: "rgba(var(--background-rgb))",
-      },
     },
   },
   plugins: [require("@tailwindcss/typography")],

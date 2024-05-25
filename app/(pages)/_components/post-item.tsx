@@ -8,11 +8,11 @@ interface PostItemProps {
 export const PostItem = ({ post }: PostItemProps) => {
   return (
     <Link href={`/posts/${post.slug}`}>
-      <article className="border-primary/15 group mb-4 border-b pb-4">
-        <h2 className="mb-2 text-lg font-semibold transition-opacity group-hover:opacity-80">
+      <article className="group mb-4 border-b border-zinc-700 pb-4">
+        <h2 className="mb-2 text-lg font-semibold transition-colors group-hover:text-zinc-200/80">
           {post.title}
         </h2>
-        <p className="opacity-60">{post.summary}</p>
+        <p className="text-zinc-500">{post.summary}</p>
       </article>
     </Link>
   );

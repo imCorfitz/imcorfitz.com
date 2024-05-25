@@ -4,19 +4,13 @@
 
 @import "additional-styles/image-zoom.css";
 
-:root {
-  --foreground-rgb: 232, 232, 232;
-  --background-rgb: 22, 22, 22;
-}
-
 html,
 body {
   height: 100%;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background-color: rgb(var(--background-rgb));
+  @apply bg-zinc-900 text-zinc-200;
 }
 
 @layer utilities {

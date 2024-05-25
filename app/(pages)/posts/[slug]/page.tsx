@@ -42,11 +42,11 @@ export default async function SinglePost({
       <header>
         <h1 className="text-2xl font-medium">{post.title}</h1>
 
-        <div className="text-primary/50 mb-10 mt-2 flex items-center gap-4 font-mono text-sm">
+        <div className="mb-10 mt-2 flex items-center gap-4 font-mono text-sm text-zinc-500">
           <div>
             <a
               href="https://twitter.com/imcorfitz"
-              className="hover:text-primary/80 transition-colors"
+              className="transition-colors hover:text-zinc-200/80"
             >
               @imCorfitz
             </a>{" "}
@@ -55,7 +55,7 @@ export default async function SinglePost({
           </div>
           <Link
             href="/"
-            className="text-primary ml-auto border-b border-dotted transition-opacity hover:opacity-80"
+            className="ml-auto border-b border-dotted text-zinc-200 transition-colors hover:text-zinc-200/80"
           >
             Back
           </Link>

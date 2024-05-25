@@ -47,6 +47,8 @@ export default async function SinglePost({
             <a
               href="https://twitter.com/imcorfitz"
               className="transition-colors hover:text-zinc-200/80"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               @imCorfitz
             </a>{" "}

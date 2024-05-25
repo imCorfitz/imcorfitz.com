@@ -12,7 +12,7 @@ export const PostItem = ({ post }: PostItemProps) => {
         <h2 className="mb-2 text-lg font-semibold transition-opacity group-hover:opacity-80">
           {post.title}
         </h2>
-        <p className="opacity-50">{post.summary}</p>
+        <p className="opacity-60">{post.summary}</p>
       </article>
     </Link>
   );

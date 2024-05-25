@@ -17,6 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <head>
+        <meta name="theme-color" content="#161616" />
         <link
           href="/icons/apple-touch-icon.png"
           rel="apple-touch-icon"

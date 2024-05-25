@@ -9,7 +9,7 @@ interface YearGroupProps {
 export const PostYearGroup = ({ year, posts }: YearGroupProps) => {
   return (
     <div className="flex">
-      <h2 className="w-12 flex-shrink-0 font-mono text-xs leading-6 opacity-50">
+      <h2 className="w-12 flex-shrink-0 font-mono text-xs leading-7 opacity-50">
         {year}
       </h2>
       <ul>

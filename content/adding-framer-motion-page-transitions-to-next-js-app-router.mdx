@@ -29,6 +29,7 @@ Next, let's create a new component called `LayoutTransition` that will handle th
 
 ```typescript
 // components/layout-transition.tsx
+"use client";
 import { AnimatePresence, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 
@@ -317,3 +318,5 @@ export function LayoutTransition({
 You should now have beautiful page transitions in your Next.js app using Framer Motion and app router.
 
 By using `FrozenRouter` to manage router context and prevent unmounts, we can maintain smooth transition experiences in Next.js applications with Framer Motion. This approach ensures a seamless user experience even during complex layout transitions.
+
+For further details, visit the [GitHub issue page](https://github.com/vercel/next.js/issues/49279)

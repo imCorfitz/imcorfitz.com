@@ -196,7 +196,7 @@ We used `usePathname` to get the current path, and set the respective key in the
 
 By using `useSelectedLayoutSegment`, we can get the current layout segment from the router context, and by comparing the current state and previous state, we can decide whether to perform the animation or not.
 
-Say you have a layout on root level and another layout in your `/posts` directory. When we use `useSelectedLayoutSegment`, we can wrap the `LayoutTransition` component around the children in the posts layout, which will then be the only place where the animation will be performed.
+Say you have a layout on root level and another layout in your `/posts` directory. When we use `useSelectedLayoutSegment`, we can wrap the `LayoutTransition` component around the children in the posts layout, which will then be the only place where the animation will be performed when the user navigates within the `/posts` route segment.
 
 ### Step 3: `LayoutTransition` Component
 

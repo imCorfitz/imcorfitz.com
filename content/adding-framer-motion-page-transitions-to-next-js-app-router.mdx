@@ -1,0 +1,406 @@
+---
+title: "Solving Framer Motion Page Transitions in Next.js App Router"
+publishedAt: "2024-06-15"
+summary: "Let's crack the code on how to do proper exit and enter animations on page transitions in Next.js using Framer Motion."
+---
+
+At the time of writing, Next.js does not have built-in support for page transitions. This is a feature that many developers have been asking for, and there are a few libraries out there that can help you achieve this. One of the most popular libraries for adding page transitions to Next.js is Framer Motion.
+
+However, getting Framer Motion to work with Next.js App Router can be a bit tricky, especially if you want to add exit animations to your pages. An issue arises when the Next.js app router causes components to unmount and remount abruptly, disrupting animations. Here's how we can tackle this problem.
+
+The versions used at the time of writing are as follows:
+
+- Next.js: 14.2.3
+- Framer Motion: 11.2.10
+
+## Why is this so hard?
+
+When Next.js introduced the app router, it introduced a new component tree structure, which effectively injects an `OuterLayoutRouter` component between each `Layout` and corresponding `Template`, which prevents us from passing a key'ed `motion` component as a child of the `Layout` component, wrapping its children in an `AnimatePresence` component. I encourage you to read the observations made by [@zackdotcomputer](https://github.com/zackdotcomputer) on this [Next.js issue](https://github.com/vercel/next.js/issues/49279#issuecomment-1541939624).
+
+So what can we do? One alternative approach suggested in the community is to use the `useMemo` hook to detect when the path changes, clone the child element, append it to the DOM, apply the exit animation to the cloned element, and then remove it once the animation is complete.
+
+Let's take a look at how we can implement this solution.
+
+## Solution 1: Using the `useMemo` hook
+
+Along with the App Router, Next.js 13 introduced the [template](https://nextjs.org/docs/app/api-reference/file-conventions/template) file convention, which wraps each child layout or page. Unlike Layout components, templates create a new instance for each of their children on navigation.
+
+Conceptually, this solution relies on the `useMemo` hook to detect when the path changes and trigger the exit animation. We clone the child element and append it to the DOM, then apply the exit animation to the cloned element. Once the animation is complete, we remove the cloned element and allow the new page to render.
+
+```typescript
+// app/template.tsx
+"use client";
+
+import { useEffect, useMemo, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
+
+interface TransitionProps {
+  children: React.ReactNode;
+}
+
+export default function Transition({ children }: TransitionProps) {
+  const [exiting, setExiting] = useState(false);
+  const path = usePathname();
+  const cloneRef = useRef<HTMLDivElement | null>(null);
+  const innerRef = useRef<HTMLDivElement | null>(null);
+  const outerRef = useRef<HTMLDivElement | null>(null);
+
+  useMemo(
+    function () {
+      if (!innerRef.current) return;
+      console.log("Switch path: ", path);
+      setExiting(true);
+      cloneRef.current = innerRef.current;
+    },
+    [path],
+  );
+
+  useEffect(
+    function () {
+      if (exiting && cloneRef.current && outerRef.current) {
+        outerRef.current.appendChild(cloneRef.current);
+        cloneRef.current.style.transition = "none";
+        cloneRef.current.style.opacity = "1";
+        window.setTimeout(function () {
+          if (!cloneRef.current) return;
+          cloneRef.current.style.transition = "opacity 400ms";
+          cloneRef.current.style.opacity = "0";
+        }, 100);
+        window.setTimeout(function () {
+          setExiting(false);
+          cloneRef.current?.remove();
+        }, 500);
+        return () => cloneRef.current?.remove();
+      }
+      window.setTimeout(function () {
+        if (!innerRef.current) return;
+        innerRef.current.style.opacity = "1";
+      }, 100);
+    },
+    [exiting],
+  );
+  return (
+    <div ref={outerRef}>
+      {!exiting && (
+        <div
+          key={path}
+          ref={innerRef}
+          style={{ opacity: 0, transition: "opacity 400ms" }}
+        >
+          {children}
+        </div>
+      )}
+    </div>
+  );
+}
+```
+
+This solution comes curtesy of [@fweth](https://github.com/fweth) on the [Next.js GitHub issue](https://github.com/vercel/next.js/issues/49279#issuecomment-2085955647).
+
+Though this solution works, it does rely on statically written animations and timeouts, which could create inconsistent behaviour when the page load times vary. Alternatively, you could extract this logic into its own component as well, in order to pass variables for the transition, such as duration, easing, and more, but that wouldn't solve the issue with page load times.
+
+## Solution 2: Using Framer Motion
+
+Framer Motion is a popular animation library that makes it easy to create animations in React. Using the `AnimatePresence` component, we can wrap our page routes in order to create a nice entry animation when our pages load.
+
+### Setting up Framer Motion
+
+The first thing you need to do is install Framer Motion in your Next.js project. You can do this by running the following command in your terminal:
+
+```bash
+bun add framer-motion
+```
+
+_(Yes - you should use bun. If you are using npm, you can run `npm install framer-motion` instead.)_
+
+### Creating the `LayoutTransition` component
+
+Next, let's create a new component called `LayoutTransition` that will handle the page transitions for us:
+
+```typescript
+// components/layout-transition.tsx
+import { AnimatePresence, motion } from "framer-motion";
+import { usePathname } from "next/navigation";
+
+interface LayoutTransitionProps {
+  children: React.ReactNode;
+  className?: React.ComponentProps<typeof motion.div>["className"];
+  style?: React.ComponentProps<typeof motion.div>["style"];
+  initial: React.ComponentProps<typeof motion.div>["initial"];
+  animate: React.ComponentProps<typeof motion.div>["animate"];
+  exit: React.ComponentProps<typeof motion.div>["exit"];
+}
+
+export function LayoutTransition({
+  children,
+  className,
+  style,
+  initial,
+  animate,
+  exit,
+}: LayoutTransitionProps) {
+  const path = usePathname();
+
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      <motion.div
+        className={className}
+        style={style}
+        key={path}
+        initial={initial}
+        animate={animate}
+        exit={exit}
+      >
+        {children}
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+```
+
+In this component, we are using the `AnimatePresence` component from Framer Motion to handle the page transitions. We are also using the `motion.div` component to create a container for our page content. The `key` prop is set to the current path, which will trigger the exit animation when the pathname changes.
+
+### Using the `LayoutTransition` component
+
+Now that we have our `LayoutTransition` component, we can use it in our layout components to add page transitions to our Next.js app. Here is an example of how you can use the `LayoutTransition` component in your layout:
+
+```typescript
+// app/layout.tsx
+import { LayoutTransition } from "@/components/layout-transition";
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en">
+      <body>
+        <LayoutTransition
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          {children}
+        </LayoutTransition>
+      </body>
+    </html>
+  )
+}
+```
+
+We are getting there! However, this doesn't really work as intended. Even though we do in fact see an exit animation, it manages to load the next page first, and then animate the exit transition followed by the enter transition. This is not what we want.
+
+## The Core Issue with Next.js App Router and Framer Motion
+
+The primary challenge with using Framer Motion in a Next.js app lies in the router's handling of component lifecycles. The Next.js app router updates the context frequently during navigation, causing components to unmount and remount abruptly. This disrupts the smooth flow of animations provided by Framer Motion's AnimatePresence and motion components. The sudden unmounting interrupts ongoing animations, leading to jarring transitions and a suboptimal user experience.
+
+### Investigating the Problem
+
+1. **Router Context Changes:** The router context updates with each navigation action, leading to new instances of components.
+2. **Component Lifecycle Interruption:** These frequent updates force components to unmount and remount, which is detrimental to animations that rely on the stability of the component tree.
+
+### Proposed Solution
+
+To mitigate this, we devise a two-part solution: `FrozenRouter` and `LayoutTransition`.
+
+### Step 1: Custom Hook - `usePreviousValue`
+
+We create a custom hook, `usePreviousValue`, to retain the previous value of a variable. This hook utilizes a `ref` to store the previous value, updating it during each render and resetting it when the component unmounts.
+
+```typescript
+function usePreviousValue<T>(value: T): T | undefined {
+  const prevValue = useRef<T>();
+
+  useEffect(() => {
+    prevValue.current = value;
+    return () => {
+      prevValue.current = undefined;
+    };
+  });
+
+  return prevValue.current;
+}
+```
+
+### Step 2: `FrozenRouter` Component
+
+The `FrozenRouter` component uses `useContext` to access the current router context and `usePreviousValue` to track the previous context and layout segment. It then compares the current and previous segments to decide if the context should change. This approach ensures the context only updates when necessary, preventing unnecessary unmounting and remounting of components.
+
+```typescript
+function FrozenRouter(props: { children: React.ReactNode }) {
+  const context = useContext(LayoutRouterContext);
+  const prevContext = usePreviousValue(context) || null;
+
+  const segment = useSelectedLayoutSegment();
+  const prevSegment = usePreviousValue(segment);
+
+  const changed = segment !== prevSegment && segment !== undefined && prevSegment !== undefined;
+
+  return (
+    <LayoutRouterContext.Provider value={changed ? prevContext : context}>
+      {props.children}
+    </LayoutRouterContext.Provider>
+  );
+}
+```
+
+Wait - hold your horses! Here we are using `LayoutRouterContext` and `useSelectedLayoutSegment` - what are these?
+
+#### What is `LayoutRouterContext`?
+
+`LayoutRouterContext` is a context object provided by Next.js, which contains the current state of the router. This context helps in managing and propagating router state changes throughout the application.
+
+#### How We Use `LayoutRouterContext`
+
+1.  **Importing the Context:**
+    We import `LayoutRouterContext` from Next.js. This allows us to access the router context and use it within our components.
+
+    ```typescript
+    import { LayoutRouterContext } from "next/dist/shared/lib/app-router-context.shared-runtime";
+    ```
+
+2.  **Using it in `FrozenRouter`:**
+    In the `FrozenRouter` component, we access the current context and track the previous context using the `usePreviousValue` hook. This helps us determine whether the context has changed due to navigation.
+
+        - **Context Access:** We use `useContext(LayoutRouterContext)` to get the current router context.
+
+        - **Previous Context Tracking:** The `usePreviousValue` hook helps in storing the previous context value.
+
+        - **Context Decision:** We determine if the context should be updated based on whether the segment has changed. If it has, we provide the previous context to prevent unnecessary unmounting and remounting.
+
+3.  **Providing Stable Context:**
+    By conditionally providing either the current or previous context, we ensure that the components are not unmounted and remounted unnecessarily, which allows Framer Motion animations to run smoothly.
+
+This approach prevents the disruption of Framer Motion animations during route changes, ensuring a seamless user experience. By controlling the context updates, we mitigate the issues caused by the Next.js app router's handling of component lifecycles.
+
+#### What is `useSelectedLayoutSegment`?
+
+`useSelectedLayoutSegment` is a Next.js hook that retrieves the current layout segment from the router context. This hook helps in determining the layout segment for the current route, allowing us to compare it with the previous segment to decide if the context should be updated.
+
+```bash
+import { useSelectedLayoutSegment } from "next/navigation";
+```
+
+#### Why do we use `useSelectedLayoutSegment`?
+
+Previously we used `usePathname` to get the current path, and set the respective key in the `LayoutTransition` component. However, what if wanted to use this animation component between different layouts?
+
+By using `useSelectedLayoutSegment`, we can get the current layout segment from the router context, and by comparing the current state and previous state, we can decide whether to perform the animation or not.
+
+Say you have a layout on root level and another layout in your `/posts` directory. When we use `useSelectedLayoutSegment`, we can wrap the `LayoutTransition` component around the children in the posts layout, which will then be the only place where the animation will be performed.
+
+### Step 3: `LayoutTransition` Component
+
+`LayoutTransition` wraps its children in Framer Motion's `AnimatePresence` and `motion.div` components for animations. By using `FrozenRouter`, it ensures the context remains stable during animations, preventing the disruption of animations due to component unmounting and remounting.
+
+```typescript
+export function LayoutTransition({
+  children,
+  className,
+  style,
+  initial,
+  animate,
+  exit,
+}: LayoutTransitionProps) {
+  const segment = useSelectedLayoutSegment();
+
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      <motion.div
+        className={className}
+        style={style}
+        key={segment}
+        initial={initial}
+        animate={animate}
+        exit={exit}
+      >
+        <FrozenRouter>
+          {children}
+        </FrozenRouter>
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+```
+
+Notice how we are using `useSelectedLayoutSegment` to get the current layout segment, and setting it as the key for the `motion.div` component.
+
+Here is the complete code for the `layout-transition.tsx` file:
+
+```typescript
+"use client";
+
+import { AnimatePresence, motion } from "framer-motion";
+import { useSelectedLayoutSegment } from "next/navigation";
+import { LayoutRouterContext } from "next/dist/shared/lib/app-router-context.shared-runtime";
+
+import { useContext, useEffect, useRef } from "react";
+
+function usePreviousValue<T>(value: T): T | undefined {
+  const prevValue = useRef<T>();
+
+  useEffect(() => {
+    prevValue.current = value;
+    return () => {
+      prevValue.current = undefined;
+    };
+  });
+
+  return prevValue.current;
+}
+
+function FrozenRouter(props: { children: React.ReactNode }) {
+  const context = useContext(LayoutRouterContext);
+  const prevContext = usePreviousValue(context) || null;
+
+  const segment = useSelectedLayoutSegment();
+  const prevSegment = usePreviousValue(segment);
+
+  const changed =
+    segment !== prevSegment &&
+    segment !== undefined &&
+    prevSegment !== undefined;
+
+  return (
+    <LayoutRouterContext.Provider value={changed ? prevContext : context}>
+      {props.children}
+    </LayoutRouterContext.Provider>
+  );
+}
+
+interface LayoutTransitionProps {
+  children: React.ReactNode;
+  className?: React.ComponentProps<typeof motion.div>["className"];
+  style?: React.ComponentProps<typeof motion.div>["style"];
+  initial: React.ComponentProps<typeof motion.div>["initial"];
+  animate: React.ComponentProps<typeof motion.div>["animate"];
+  exit: React.ComponentProps<typeof motion.div>["exit"];
+}
+
+export function LayoutTransition({
+  children,
+  className,
+  style,
+  initial,
+  animate,
+  exit,
+}: LayoutTransitionProps) {
+  const segment = useSelectedLayoutSegment();
+
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      <motion.div
+        className={className}
+        style={style}
+        key={segment}
+        initial={initial}
+        animate={animate}
+        exit={exit}
+      >
+        <FrozenRouter>{children}</FrozenRouter>
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+```

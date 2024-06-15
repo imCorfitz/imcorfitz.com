@@ -38,27 +38,36 @@ function FrozenRouter(props: { children: React.ReactNode }) {
   );
 }
 
-export function LayoutTransition(props: {
+interface LayoutTransitionProps {
   children: React.ReactNode;
   className?: React.ComponentProps<typeof motion.div>["className"];
   style?: React.ComponentProps<typeof motion.div>["style"];
   initial: React.ComponentProps<typeof motion.div>["initial"];
   animate: React.ComponentProps<typeof motion.div>["animate"];
   exit: React.ComponentProps<typeof motion.div>["exit"];
-}) {
+}
+
+export function LayoutTransition({
+  children,
+  className,
+  style,
+  initial,
+  animate,
+  exit,
+}: LayoutTransitionProps) {
   const segment = useSelectedLayoutSegment();
 
   return (
     <AnimatePresence mode="wait" initial={false}>
       <motion.div
-        className={props.className}
-        style={props.style}
+        className={className}
+        style={style}
         key={segment}
-        initial={props.initial}
-        animate={props.animate}
-        exit={props.exit}
+        initial={initial}
+        animate={animate}
+        exit={exit}
       >
-        <FrozenRouter>{props.children}</FrozenRouter>
+        <FrozenRouter>{children}</FrozenRouter>
       </motion.div>
     </AnimatePresence>
   );

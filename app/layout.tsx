@@ -7,7 +7,7 @@ import "react-medium-image-zoom/dist/styles.css";
 
 export const metadata: Metadata = {
   title: "Corfitz",
-  description: "Thoughts on software development and other things",
+  description: "Thoughts on software development and stuff.",
 };
 
 export default function RootLayout({

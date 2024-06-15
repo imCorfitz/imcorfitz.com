@@ -1,7 +1,7 @@
 ---
 title: "Solving Framer Motion Page Transitions in Next.js App Router"
 publishedAt: "2024-06-15"
-summary: "Let's crack the code on how to do proper exit and enter animations on page transitions in Next.js using Framer Motion."
+summary: "Let's crack the code on how to do proper exit and enter animations on page transitions in Next.js App Router using Framer Motion."
 ---
 
 At the time of writing, Next.js does not have built-in support for page transitions. This is a feature that many developers have been asking for, and there are a few libraries out there that can help you achieve this. One of the most popular libraries for adding page transitions to Next.js is Framer Motion.
@@ -188,7 +188,7 @@ This approach prevents the disruption of Framer Motion animations during route c
 
 `useSelectedLayoutSegment` is a Next.js navigation hook that retrieves the current layout segment from the router context. This hook helps in determining the layout segment for the current route, allowing us to compare it with the previous segment to decide if the context should be updated.
 
-```bash
+```typescript
 import { useSelectedLayoutSegment } from "next/navigation";
 ```
 

@@ -30,6 +30,7 @@ export default function About() {
         alt="Corfitz"
         width={100}
         height={100}
+        priority
         className="rounded-full"
       />
       <article className="mt-6 space-y-4 text-zinc-400">

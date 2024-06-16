@@ -29,8 +29,7 @@ _(Yes  -  I think bun is the best. If you are using npm, you can run `npm in
 
 Next, let's create a new component called `LayoutTransition` that will handle the page transitions for us:
 
-```typescript
-// components/layout-transition.tsx
+```typescript title="components/layout-transition.tsx"
 "use client";
 import { AnimatePresence, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
@@ -77,8 +76,7 @@ In this component, we are using the `AnimatePresence` component from Framer Moti
 
 Now that we have our `LayoutTransition` component, we can use it in our layout components to add page transitions to our Next.js app. Here is an example of how you can use the `LayoutTransition` component in your layout:
 
-```typescript
-// app/layout.tsx
+```typescript title="app/layout.tsx" {11-17}
 import { LayoutTransition } from "@/components/layout-transition";
 
 export default function RootLayout({
@@ -121,7 +119,7 @@ To mitigate this, we devise a two-part solution: `FrozenRouter` and `LayoutTrans
 
 We create a custom hook, `usePreviousValue`, to retain the previous value of a variable. This hook utilizes a `ref` to store the previous value, updating it during each render and resetting it when the component unmounts.
 
-```typescript
+```typescript title="components/layout-transition.tsx"
 function usePreviousValue<T>(value: T): T | undefined {
   const prevValue = useRef<T>();
 
@@ -140,7 +138,7 @@ function usePreviousValue<T>(value: T): T | undefined {
 
 The `FrozenRouter` component uses `useContext` to access the current router context and `usePreviousValue` to track the previous context and layout segment. It then compares the current and previous segments to decide if the context should change. This approach ensures the context only updates when necessary, preventing unnecessary unmounting and remounting of components.
 
-```typescript
+```typescript title="components/layout-transition.tsx"
 function FrozenRouter(props: { children: React.ReactNode }) {
   const context = useContext(LayoutRouterContext);
   const prevContext = usePreviousValue(context) || null;
@@ -204,7 +202,7 @@ Say you have a layout on root level and another layout in your `/posts` director
 
 `LayoutTransition` wraps its children in Framer Motion's `AnimatePresence` and `motion.div` components for animations. By using `FrozenRouter`, it ensures the context remains stable during animations, preventing the disruption of animations due to component unmounting and remounting.
 
-```typescript
+```typescript title="components/layout-transition.tsx" {9,21-23}
 export function LayoutTransition({
   children,
   className,
@@ -238,7 +236,7 @@ Notice how we are now using `useSelectedLayoutSegment` instead of `usePathname` 
 
 Here is the complete code for the `layout-transition.tsx` file:
 
-```typescript
+```typescript title="components/layout-transition.tsx"
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";

@@ -40,7 +40,7 @@ export default makeSource({
       [
         rehypePrettyCode,
         {
-          theme: "one-dark-pro",
+          theme: "aurora-x",
           onVisitLine(node) {
             // Prevent lines from collapsing in `display: grid` mode, and
             // allow empty lines to be copy/pasted
@@ -50,7 +50,12 @@ export default makeSource({
           },
           onVisitHighlightedLine(node) {
             // Each line node by default has `class="line"`.
-            node.properties.className.push("line--highlighted");
+            const nodeClass = node.properties.className;
+            if (nodeClass && nodeClass.length > 0) {
+              node.properties.className.push("line--highlighted");
+            } else {
+              node.properties.className = ["line--highlighted"];
+            }
           },
           onVisitHighlightedWord(node) {
             // Each word node has no className by default.

@@ -10,7 +10,11 @@ body {
 }
 
 body {
-  @apply bg-zinc-900 text-zinc-200;
+  @apply bg-zinc-950 text-zinc-200;
+}
+
+.line--highlighted {
+  @apply bg-slate-900;
 }
 
 @layer utilities {

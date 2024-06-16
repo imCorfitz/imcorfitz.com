@@ -204,7 +204,7 @@ Say you have a layout on root level and another layout in your `/posts` director
 
 `LayoutTransition` wraps its children in Framer Motion's `AnimatePresence` and `motion.div` components for animations. By using `FrozenRouter`, it ensures the context remains stable during animations, preventing the disruption of animations due to component unmounting and remounting.
 
-```typescript title="components/layout-transition.tsx" {9,21-23}
+```typescript title="components/layout-transition.tsx" {9,16,21-23}
 export function LayoutTransition({
   children,
   className,

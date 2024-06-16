@@ -20,11 +20,18 @@ export async function generateMetadata({
 
   if (!post) return;
 
-  const { title, summary: description } = post;
+  const { title, summary: description, image } = post;
 
   return {
     title,
     description,
+    openGraph: {
+      images: image,
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: image,
+    },
   };
 }
 

@@ -15,7 +15,7 @@ export default function Layout({ children }: LayoutProps) {
         animate={{
           opacity: 1,
           y: 0,
-          transition: { delay: 0.1, duration: 0.1 },
+          transition: { duration: 0.1 },
         }}
         exit={{ opacity: 0, y: 15 }}
       >

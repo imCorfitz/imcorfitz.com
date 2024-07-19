@@ -18,7 +18,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <head>
-        <meta name="theme-color" content="#09090b" />
         <link
           href="/icons/apple-touch-icon.png"
           rel="apple-touch-icon"
@@ -43,7 +42,7 @@ export default function RootLayout({
           rel="mask-icon"
         />
         <meta content="#09090b" name="msapplication-TileColor" />
-        <meta content="#E8E8E8" name="theme-color" />
+        <meta content="#09090b" name="theme-color" />
       </head>
       <body>{children}</body>
     </html>

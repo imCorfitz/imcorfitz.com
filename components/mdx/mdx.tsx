@@ -1,4 +1,4 @@
-import { useMDXComponent } from "next-contentlayer/hooks";
+import { useMDXComponent } from "next-contentlayer2/hooks";
 import ImageZoom from "@/components/image-zoom";
 
 function MyImg(props: any) {

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { NavLink } from "./nav-link";
-import { Twitter, Github } from "lucide-react";
 import { SocialLink } from "./social-link";
+import { Logo } from "@/components/icons";
 
 // ------------------------------------------------------------------
 
@@ -18,14 +18,19 @@ const navItems = [
 
 const socialItems = [
   {
-    path: "https://twitter.com/imcorfitz",
-    label: "Twitter",
-    icon: <Twitter size={18} />,
+    path: "https://x.com/imcorfitz",
+    label: "X",
+    icon: <Logo.X size={16} />,
+  },
+  {
+    path: "https://bsky.app/profile/imcorfitz.com",
+    label: "Bluesky",
+    icon: <Logo.Bluesky size={17} />,
   },
   {
     path: "https://github.com/imcorfitz",
     label: "GitHub",
-    icon: <Github size={18} />,
+    icon: <Logo.Github size={18} />,
   },
 ];
 

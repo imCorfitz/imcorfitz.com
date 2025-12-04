@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { allPosts } from "contentlayer/generated";
+import { allPosts } from "content-collections";
 import { notFound } from "next/navigation";
 import { Mdx } from "@/components/mdx/mdx";
 import PostDate from "@/components/post-date";
@@ -68,7 +68,7 @@ export default async function SinglePost(props: {
           </Link>
         </div>
       </header>
-      <Mdx code={post.body.code} />
+      <Mdx code={post.mdx} />
     </article>
   );
 }

@@ -1,4 +1,4 @@
-import { allPosts } from "contentlayer/generated";
+import { allPosts } from "content-collections";
 import { PostList } from "./_components/post-list";
 
 export default function Home() {

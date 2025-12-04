@@ -1,8 +1,8 @@
-import { withContentlayer } from "next-contentlayer2";
+import { withContentCollections } from "@content-collections/next";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   turbopack: {},
 };
 
-export default withContentlayer(nextConfig);
+export default withContentCollections(nextConfig);

@@ -11,11 +11,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata(
-  props: {
-    params: Promise<{ slug: string }>;
-  }
-): Promise<Metadata | undefined> {
+export async function generateMetadata(props: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata | undefined> {
   const params = await props.params;
   const post = allPosts.find((post) => post.slug === params.slug);
 
@@ -36,11 +34,9 @@ export async function generateMetadata(
   };
 }
 
-export default async function SinglePost(
-  props: {
-    params: Promise<{ slug: string }>;
-  }
-) {
+export default async function SinglePost(props: {
+  params: Promise<{ slug: string }>;
+}) {
   const params = await props.params;
   const post = allPosts.find((post) => post.slug === params.slug);
 

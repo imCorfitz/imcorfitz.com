@@ -1,6 +1,6 @@
 import { defineDocumentType, makeSource } from "contentlayer2/source-files";
 import remarkGfm from "remark-gfm";
-import remarkUnwrapImages from "remark-unwrap-images";
+import rehypeUnwrapImages from "rehype-unwrap-images";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 
@@ -38,8 +38,9 @@ export default makeSource({
   contentDirPath: "content",
   documentTypes: [Post],
   mdx: {
-    remarkPlugins: [remarkGfm, remarkUnwrapImages],
+    remarkPlugins: [remarkGfm],
     rehypePlugins: [
+      rehypeUnwrapImages,
       rehypeSlug,
       [
         rehypePrettyCode,
